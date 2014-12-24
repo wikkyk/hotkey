@@ -1,0 +1,18 @@
+#!/sbin/runscript
+# Copyright 1999-2014 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+depend() {
+	need dev
+}
+
+start() {
+	start-stop-daemon --start --quiet --user "${HOTKEY_USER}" \
+		--background --make-pidfile --pidfile /var/run/hotkey \
+		-- hotkey
+}
+
+stop() {
+	start-stop-daemon --stop --pidfile /var/run/hotkey
+}
